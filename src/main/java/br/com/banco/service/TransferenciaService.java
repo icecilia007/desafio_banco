@@ -9,6 +9,7 @@ public interface TransferenciaService {
     List<Transferencia> obterTransferencias();
     List<Transferencia> obterTransferenciasPorPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim);
     List<Transferencia> obterTransferenciasPorOperador(String nomeOperador);
+    List<Transferencia> obterTransferenciasPorPeriodoEOperador(LocalDateTime dataInicio, LocalDateTime dataFim, String nomeOperador);
 }
 
 

@@ -32,6 +32,10 @@ public class TransferenciaServiceImpl implements TransferenciaService {
             return transferenciaRepository.findByNomeOperadorTransacao(nomeOperador);
         }
 
+        @Override
+        public List<Transferencia> obterTransferenciasPorPeriodoEOperador(LocalDateTime dataInicio, LocalDateTime dataFim, String nomeOperador) {
+            return transferenciaRepository.findByDataTransferenciaBetweenAndNomeOperadorTransacao(dataInicio,dataFim,nomeOperador);
+        }
     }
 
 

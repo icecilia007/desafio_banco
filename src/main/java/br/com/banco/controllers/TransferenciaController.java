@@ -41,4 +41,12 @@ public class TransferenciaController {
         return transferenciaService.obterTransferenciasPorOperador(nomeOperador);
     }
 
+    @GetMapping("/periodo-operador")
+    public List<Transferencia> obterTransferenciasPorPeriodoEOperador(
+            @RequestBody TransferenciaRequest transferenciaRequest) {
+        LocalDateTime dataInicio = transferenciaRequest.getDates().getDataInicio();
+        LocalDateTime dataFim = transferenciaRequest.getDates().getDataFim();
+        String nomeOperador = transferenciaRequest.getOperadorRequest().getNomeOperador();
+        return transferenciaService.obterTransferenciasPorPeriodoEOperador(dataInicio, dataFim, nomeOperador);
+    }
 }
