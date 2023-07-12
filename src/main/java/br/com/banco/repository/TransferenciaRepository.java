@@ -14,6 +14,8 @@ import java.util.List;
 public interface TransferenciaRepository extends JpaRepository<Transferencia, Long> {
     @Query("SELECT t FROM Transferencia t WHERE t.dataTransferencia BETWEEN :dataInicio AND :dataFim")
     List<Transferencia> findByDataTransferenciaBetween(LocalDateTime dataInicio, LocalDateTime dataFim);
+    @Query("SELECT t FROM Transferencia t WHERE t.nomeOperadorTransacao = :nomeOperador")
+    List<Transferencia> findByNomeOperadorTransacao(String nomeOperador);
 
 }
 

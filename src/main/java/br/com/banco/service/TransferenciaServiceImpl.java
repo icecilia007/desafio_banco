@@ -27,6 +27,11 @@ public class TransferenciaServiceImpl implements TransferenciaService {
             return transferenciaRepository.findByDataTransferenciaBetween(dataInicio, dataFim);
         }
 
+        @Override
+        public List<Transferencia> obterTransferenciasPorOperador(String nomeOperador) {
+            return transferenciaRepository.findByNomeOperadorTransacao(nomeOperador);
+        }
+
     }
 
 

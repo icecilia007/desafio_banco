@@ -35,4 +35,10 @@ public class TransferenciaController {
         return transferenciaService.obterTransferenciasPorPeriodo(dataInicio, dataFim);
     }
 
+    @GetMapping("/operador")
+    public List<Transferencia> obterTransferenciasPorOperador(@RequestBody OperadorRequest operadorRequest) {
+        String nomeOperador = operadorRequest.getNomeOperador();
+        return transferenciaService.obterTransferenciasPorOperador(nomeOperador);
+    }
+
 }
