@@ -27,4 +27,12 @@ public class TransferenciaController {
         return transferenciaService.obterTransferencias();
     }
 
+    @GetMapping("/periodo")
+    public List<Transferencia> obterTransferenciasPorPeriodo(
+            @RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DatesRequest dates) {
+        LocalDateTime dataInicio = dates.getDataInicio();
+        LocalDateTime dataFim = dates.getDataFim();
+        return transferenciaService.obterTransferenciasPorPeriodo(dataInicio, dataFim);
+    }
+
 }

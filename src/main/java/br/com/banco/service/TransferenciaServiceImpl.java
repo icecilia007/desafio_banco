@@ -21,6 +21,12 @@ public class TransferenciaServiceImpl implements TransferenciaService {
         public List<Transferencia> obterTransferencias() {
             return transferenciaRepository.findAll();
         }
+
+        @Override
+        public List<Transferencia> obterTransferenciasPorPeriodo(LocalDateTime dataInicio,LocalDateTime dataFim) {
+            return transferenciaRepository.findByDataTransferenciaBetween(dataInicio, dataFim);
+        }
+
     }
 
 

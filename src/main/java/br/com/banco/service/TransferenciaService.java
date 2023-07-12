@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface TransferenciaService {
     List<Transferencia> obterTransferencias();
-}
+    List<Transferencia> obterTransferenciasPorPeriodo(LocalDateTime dataInicio, LocalDateTime dataFim);
+    }
 
 
