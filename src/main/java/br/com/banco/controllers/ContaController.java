@@ -1,7 +1,6 @@
-package br.com.banco.controller;
+package br.com.banco.controllers;
 
 import br.com.banco.models.Conta;
-import br.com.banco.models.Transferencia;
 import br.com.banco.service.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
