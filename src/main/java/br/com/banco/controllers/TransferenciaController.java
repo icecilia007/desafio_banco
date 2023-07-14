@@ -29,13 +29,11 @@ public class TransferenciaController {
     public List<Transferencia> obterTransferenciasPorPeriodo(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
-        System.out.println("rota em uso");
         return transferenciaService.obterTransferenciasPorPeriodo(dataInicio, dataFim);
     }
 
     @GetMapping("/operador")
     public List<Transferencia> obterTransferenciasPorOperador(@RequestParam String nomeOperador) {
-        System.out.println("rota em uso");
         return transferenciaService.obterTransferenciasPorOperador(nomeOperador);
     }
 
