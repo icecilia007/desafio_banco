@@ -21,23 +21,15 @@ lista de contas
 
 
 ### requisição 
->**GET** `http://localhost:8080/api/v1/contas\id`
-> 
-request body: 
-
-application json
-
-    {
-        "idConta":"2",
-        "nomeResponsavel":null
-    }
+>**GET** `http://localhost:8080/api/v1/contas/id/?contaId=1`
+>
 
 ### retorno 
 Objeto do tipo conta
 
     {
-        "idConta": 2,
-        "nomeResponsavel": "Sicrano"
+        "idConta": 1,
+        "nomeResponsavel": "Fulano"
     }
 
 ## Transferencias
@@ -52,7 +44,7 @@ lista de transferencias
         {
             "id": 1,
             "dataTransferencia": "2019-01-01T12:00:00",
-            "valor": 30895.46,
+            "valor": 1000.0,
             "tipo": "DEPOSITO",
             "nomeOperadorTransacao": null,
             "conta": {
@@ -63,7 +55,7 @@ lista de transferencias
         {
             "id": 2,
             "dataTransferencia": "2019-02-03T09:53:27",
-            "valor": 12.24,
+            "valor": 1000.0,
             "tipo": "DEPOSITO",
             "nomeOperadorTransacao": null,
             "conta": {
@@ -74,7 +66,7 @@ lista de transferencias
         {
             "id": 3,
             "dataTransferencia": "2019-05-04T08:12:45",
-            "valor": -500.5,
+            "valor": -500.0,
             "tipo": "SAQUE",
             "nomeOperadorTransacao": null,
             "conta": {
@@ -85,7 +77,7 @@ lista de transferencias
         {
             "id": 4,
             "dataTransferencia": "2019-08-07T08:12:45",
-            "valor": -530.5,
+            "valor": -530.0,
             "tipo": "SAQUE",
             "nomeOperadorTransacao": null,
             "conta": {
@@ -96,7 +88,7 @@ lista de transferencias
         {
             "id": 5,
             "dataTransferencia": "2020-06-08T10:15:01",
-            "valor": 3241.23,
+            "valor": 300.0,
             "tipo": "TRANSFERENCIA",
             "nomeOperadorTransacao": "Beltrano",
             "conta": {
@@ -107,7 +99,7 @@ lista de transferencias
         {
             "id": 6,
             "dataTransferencia": "2021-04-01T12:12:04",
-            "valor": 25173.09,
+            "valor": 200.0,
             "tipo": "TRANSFERENCIA",
             "nomeOperadorTransacao": "Ronnyscley",
             "conta": {
@@ -118,26 +110,18 @@ lista de transferencias
     ]
 
 ### requisição 
->**GET** `http://localhost:8080/api/v1/transferencias/periodo`
+>**GET** `http://localhost:8080/api/v1/transferencias/periodo?dataInicio=2019-01-01T00:00&dataFim=2019-07-31T10:00`
 > 
-request body: 
-
-application json
-
-    {
-      "dataInicio": "2019-01-01 10:00:00",
-      "dataFim": "2019-08-07 08:12:45"
-    }
 
 
 ### retorno 
-list de transferencias
+lista de transferencias
 
     [
         {
             "id": 1,
             "dataTransferencia": "2019-01-01T12:00:00",
-            "valor": 30895.46,
+            "valor": 1000.0,
             "tipo": "DEPOSITO",
             "nomeOperadorTransacao": null,
             "conta": {
@@ -148,7 +132,7 @@ list de transferencias
         {
             "id": 2,
             "dataTransferencia": "2019-02-03T09:53:27",
-            "valor": 12.24,
+            "valor": 1000.0,
             "tipo": "DEPOSITO",
             "nomeOperadorTransacao": null,
             "conta": {
@@ -159,37 +143,19 @@ list de transferencias
         {
             "id": 3,
             "dataTransferencia": "2019-05-04T08:12:45",
-            "valor": -500.5,
+            "valor": -500.0,
             "tipo": "SAQUE",
             "nomeOperadorTransacao": null,
             "conta": {
                 "idConta": 1,
                 "nomeResponsavel": "Fulano"
             }
-        },
-        {
-            "id": 4,
-            "dataTransferencia": "2019-08-07T08:12:45",
-            "valor": -530.5,
-            "tipo": "SAQUE",
-            "nomeOperadorTransacao": null,
-            "conta": {
-                "idConta": 2,
-                "nomeResponsavel": "Sicrano"
-            }
         }
     ]
 
 ### requisição 
->**GET** `http://localhost:8080/api/v1/transferencias/operador`
-> 
-request body: 
+>**GET** `http://localhost:8080/api/v1/transferencias/operador?nomeOperador=Beltrano`
 
-application json
-
-    {
-          "nomeOperador": "Beltrano"
-    }
     
 
 ### retorno 
@@ -199,7 +165,7 @@ list de transferencias
         {
             "id": 5,
             "dataTransferencia": "2020-06-08T10:15:01",
-            "valor": 3241.23,
+            "valor": 300.0,
             "tipo": "TRANSFERENCIA",
             "nomeOperadorTransacao": "Beltrano",
             "conta": {
@@ -210,21 +176,8 @@ list de transferencias
     ]
 
 ### requisição 
->**GET** `http://localhost:8080/api/v1/transferencias/periodo-operador`
+>**GET** `http://localhost:8080/api/v1/transferencias/periodo-operador?dataInicio=2020-06-08T10:00:00&dataFim=2020-07-31T23:59:59&nomeOperador=Beltrano`
 > 
-request body: 
-
-application json
-
-    {
-      "dates": {
-        "dataInicio": "2019-01-01 10:00:00",
-        "dataFim": "2020-06-08 10:15:01"
-      },
-      "operadorRequest": {
-        "nomeOperador": "Beltrano"
-      }
-    }
 
 ### retorno 
 list de transferencias
@@ -233,7 +186,7 @@ list de transferencias
         {
             "id": 5,
             "dataTransferencia": "2020-06-08T10:15:01",
-            "valor": 3241.23,
+            "valor": 300.0,
             "tipo": "TRANSFERENCIA",
             "nomeOperadorTransacao": "Beltrano",
             "conta": {
