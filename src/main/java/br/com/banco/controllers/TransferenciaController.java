@@ -22,7 +22,6 @@ public class TransferenciaController {
 
     @GetMapping
     public List<Transferencia> obterTransferencias() {
-        System.out.println("rota em uso");
         return transferenciaService.obterTransferencias();
     }
 
