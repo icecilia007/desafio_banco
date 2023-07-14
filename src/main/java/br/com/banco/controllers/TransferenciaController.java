@@ -1,9 +1,6 @@
 package br.com.banco.controllers;
 
-import br.com.banco.models.DatesRequest;
-import br.com.banco.models.OperadorRequest;
 import br.com.banco.models.Transferencia;
-import br.com.banco.models.TransferenciaRequest;
 import br.com.banco.service.TransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/transferencias")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TransferenciaController {
     private final TransferenciaService transferenciaService;
 
@@ -24,29 +22,29 @@ public class TransferenciaController {
 
     @GetMapping
     public List<Transferencia> obterTransferencias() {
+        System.out.println("rota em uso");
         return transferenciaService.obterTransferencias();
     }
 
     @GetMapping("/periodo")
     public List<Transferencia> obterTransferenciasPorPeriodo(
-            @RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DatesRequest dates) {
-        LocalDateTime dataInicio = dates.getDataInicio();
-        LocalDateTime dataFim = dates.getDataFim();
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
+        System.out.println("rota em uso");
         return transferenciaService.obterTransferenciasPorPeriodo(dataInicio, dataFim);
     }
 
     @GetMapping("/operador")
-    public List<Transferencia> obterTransferenciasPorOperador(@RequestBody OperadorRequest operadorRequest) {
-        String nomeOperador = operadorRequest.getNomeOperador();
+    public List<Transferencia> obterTransferenciasPorOperador(@RequestParam String nomeOperador) {
+        System.out.println("rota em uso");
         return transferenciaService.obterTransferenciasPorOperador(nomeOperador);
     }
 
     @GetMapping("/periodo-operador")
     public List<Transferencia> obterTransferenciasPorPeriodoEOperador(
-            @RequestBody TransferenciaRequest transferenciaRequest) {
-        LocalDateTime dataInicio = transferenciaRequest.getDates().getDataInicio();
-        LocalDateTime dataFim = transferenciaRequest.getDates().getDataFim();
-        String nomeOperador = transferenciaRequest.getOperadorRequest().getNomeOperador();
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim,
+            @RequestParam String nomeOperador) {
         return transferenciaService.obterTransferenciasPorPeriodoEOperador(dataInicio, dataFim, nomeOperador);
     }
 }
